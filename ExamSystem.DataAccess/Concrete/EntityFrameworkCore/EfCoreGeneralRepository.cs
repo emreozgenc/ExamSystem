@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ExamSystem.DataAccess.Concrete.EntityFramework
+namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
 {
     public class EfCoreGeneralRepository<TEntity, TContext> : IRepository<TEntity> where TEntity : class, IEntity where TContext : DbContext, new()
     {
