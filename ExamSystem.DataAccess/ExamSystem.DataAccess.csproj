@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExamSystem.Entities\ExamSystem.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
