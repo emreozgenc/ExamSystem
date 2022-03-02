@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ExamSystem.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ExamSystem.Entities.Concrete
 {
-    public class Question
+    public class Question : IEntity
     {
         public int QuestionId { get; set; }
         public string Text { get; set; }
