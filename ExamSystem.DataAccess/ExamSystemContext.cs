@@ -24,6 +24,8 @@ namespace ExamSystem.DataAccess
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<StudentExam>()
                 .HasKey(x => new { x.StudentId, x.ExamId });
 
@@ -37,6 +39,9 @@ namespace ExamSystem.DataAccess
                 .WithMany(x => x.StudentExams)
                 .HasForeignKey(x => x.ExamId);
 
+            builder.Entity<Question>()
+                .HasOne(x => x.CorrectAnswer)
+                .WithOne(x => x.Question);
         }
     }
 }

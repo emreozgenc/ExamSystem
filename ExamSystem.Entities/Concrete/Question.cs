@@ -12,7 +12,9 @@ namespace ExamSystem.Entities.Concrete
         public string Text { get; set; }
         public string Info { get; set; }
         public ICollection<Answer> Answers { get; set; }
-        public string CorrectAnswer { get; set; }
+        public int CorrectAnswerId { get; set; }
+        [ForeignKey(nameof(CorrectAnswerId))]
+        public Answer CorrectAnswer { get; set; }
         public Exam Exam { get; set; }
     }
 }
