@@ -42,6 +42,10 @@ namespace ExamSystem.DataAccess
             builder.Entity<Question>()
                 .HasOne(x => x.CorrectAnswer)
                 .WithOne(x => x.Question);
+
+            builder.Entity<User>()
+                .HasIndex(x => x.UserName)
+                .IsUnique();
         }
     }
 }
