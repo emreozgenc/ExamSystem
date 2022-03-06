@@ -4,4 +4,17 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExamSystem.Business\ExamSystem.Business.csproj" />
+    <ProjectReference Include="..\ExamSystem.DataAccess\ExamSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\ExamSystem.Entities\ExamSystem.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
