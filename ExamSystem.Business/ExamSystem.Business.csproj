@@ -8,4 +8,9 @@
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExamSystem.DataAccess\ExamSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\ExamSystem.Entities\ExamSystem.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
