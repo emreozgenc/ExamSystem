@@ -39,48 +39,48 @@ namespace ExamSystem.Business.Concrete
             var userName = user.UserName;
             var password = user.Password;
 
-            if(string.IsNullOrEmpty(userName))
+            if (string.IsNullOrEmpty(userName))
             {
                 validationErrors.Add(Messages.NullOrEmptyUserName);
             }
 
-            if(userName.Length > UserNameMaxLength || userName.Length < UserNameMinLength)
+            if (userName.Length > UserNameMaxLength || userName.Length < UserNameMinLength)
             {
-                validationErrors.Add(Messages.UserNameShortOrLong + $"({UserNameMinLength} - {UserNameMinLength})");
+                validationErrors.Add(Messages.UserNameShortOrLong + $" ({UserNameMinLength} - {UserNameMaxLength})");
             }
 
-            foreach(var character in userName)
+            foreach (var character in userName)
             {
                 var isLetterOrDigit = Char.IsLetterOrDigit(character);
-                if(!isLetterOrDigit)
+                if (!isLetterOrDigit)
                 {
                     validationErrors.Add(Messages.UserNameContainsInvalidCharacters);
                     break;
                 }
             }
 
-            if(string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(password))
             {
                 validationErrors.Add(Messages.NullOrEmptyPassword);
             }
 
-            if(password.Length > PasswordMaxLength || password.Length < PasswordMinLength)
+            if (password.Length > PasswordMaxLength || password.Length < PasswordMinLength)
             {
-                validationErrors.Add(Messages.PasswordShortOrLong + $"{PasswordMinLength} - {PasswordMaxLength}");
+                validationErrors.Add(Messages.PasswordShortOrLong + $" ({PasswordMinLength} - {PasswordMaxLength})");
             }
 
-            if(validationErrors.Count > 0)
+            if (validationErrors.Count > 0)
             {
                 throw new ValidationException(validationErrors);
             }
-            
+
         }
 
         private void CheckUserNameIfExists(string userName)
         {
             var checkResult = _userRepository.CheckByUserName(userName);
 
-            if(!checkResult)
+            if (checkResult)
             {
                 throw new RegisterException(Messages.UserAlreadyExists);
             }
