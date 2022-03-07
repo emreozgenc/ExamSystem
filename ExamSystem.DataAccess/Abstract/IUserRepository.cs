@@ -8,5 +8,6 @@ namespace ExamSystem.DataAccess.Abstract
     public interface IUserRepository : IRepository<User>
     {
         bool CheckByUserName(string userName);
+        User GetByUserName(string userName);
     }
 }

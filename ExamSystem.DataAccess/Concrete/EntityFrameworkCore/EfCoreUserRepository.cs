@@ -17,5 +17,14 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
                 return checkResult;
             }
         }
+
+        public User GetByUserName(string userName)
+        {
+            using (var context = new ExamSystemContext())
+            {
+                var user = context.Users.FirstOrDefault(x => x.UserName == userName);
+                return user;
+            }
+        }
     }
 }
