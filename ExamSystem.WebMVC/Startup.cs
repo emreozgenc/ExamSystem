@@ -1,3 +1,8 @@
+using ExamSystem.Business.Abstract;
+using ExamSystem.Business.Concrete;
+using ExamSystem.DataAccess.Abstract;
+using ExamSystem.DataAccess.Concrete.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +29,17 @@ namespace ExamSystem.WebMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
+            services.AddScoped<ISignInService, SignInManager>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IUserRepository, EfCoreUserRepository>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.Cookie.Name = "ExamSystem.Authentication.Cookie";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +60,7 @@ namespace ExamSystem.WebMVC
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
