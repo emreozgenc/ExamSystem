@@ -14,6 +14,7 @@ namespace ExamSystem.Business.Utilities
         public const string UserNameContainsInvalidCharacters = "Kullanıcı adı uygunsuz karakterler içeriyor. ([a-z][A-Z][0-9])";
         public const string NullOrEmptyPassword = "Şifre alanı boş bırakılamaz.";
         public const string PasswordShortOrLong = "Şifre belirtilen sınırlar içerisinde değil.";
+        public const string PasswordsAreNotTheSame = "Girmiş olduğunuz şifreler eşleşmiyor.";
 
     }
 }
