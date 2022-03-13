@@ -15,6 +15,11 @@ namespace ExamSystem.Business.Utilities
         public const string NullOrEmptyPassword = "Şifre alanı boş bırakılamaz.";
         public const string PasswordShortOrLong = "Şifre belirtilen sınırlar içerisinde değil.";
         public const string PasswordsAreNotTheSame = "Girmiş olduğunuz şifreler eşleşmiyor.";
+        public const string AlreadySignedIn = "Zaten daha önce oturum açtınız.";
+        public const string SignedOutSuccess = "Başarılı bir şekilde çıkış yapıldı.";
+        public const string SignedInSuccess = "Başarılı bir şekilde giriş yaptınız.";
+        public const string RegisteredSuccess = "Başarılı bir şekilde kaydınız yapıldı. Giriş yapabilirsiniz.";
+
 
     }
 }
