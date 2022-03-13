@@ -7,11 +7,11 @@
 <h2 class="text-primary text-center mt-8">Giriş Yap</h2>
 <div class="row">
     <div class="col-10 col-sm-8 col-md-6 col-lg-4 card mx-auto mt-2">
-        @if(ViewBag.ErrorMessages != null)
+        @if (ViewBag.ErrorMessages != null)
         {
             <div class="alert alert-danger mb-2">
                 <ul>
-                    @foreach(var message in ViewBag.ErrorMessages)
+                    @foreach (var message in ViewBag.ErrorMessages)
                     {
                         <li>@message</li>
                     }
