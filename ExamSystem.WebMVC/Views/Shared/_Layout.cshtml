@@ -35,8 +35,18 @@
     <footer class="footer">
         <span class="footer__text">Online Sınav Sistemi developed with <i class="footer__heart fa-solid fa-heart"></i> by <a class="footer__link" href="https://www.github.com/emreozgenc" target="_blank">Emre Özgenç</a></span>
     </footer>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div id="notify" data-time="5000" class="notification notification-success">
+            <button id="notify-close" class="notification__button"><i class="fa-solid fa-xmark"></i></button>
+            <span class="notification__text">@TempData["SuccessMessage"]</span>
+        </div>
+    }
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/notify.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
