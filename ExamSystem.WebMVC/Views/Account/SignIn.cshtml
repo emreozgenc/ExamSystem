@@ -1,0 +1,34 @@
+﻿@model SignInModel
+
+@{
+    Layout = "_SecondaryLayout";
+}
+
+<h2 class="text-primary text-center mt-8">Giriş Yap</h2>
+<div class="row">
+    <div class="col-10 col-sm-8 col-md-6 col-lg-4 card mx-auto mt-2">
+        @if(ViewBag.ErrorMessages != null)
+        {
+            <div class="alert alert-danger mb-2">
+                <ul>
+                    @foreach(var message in ViewBag.ErrorMessages)
+                    {
+                        <li>@message</li>
+                    }
+                </ul>
+            </div>
+        }
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-2"></div>
+        <form asp-controller="Account" asp-action="SignIn" method="post">
+            <div class="form__group">
+                <label class="form__label" asp-for="UserName"></label>
+                <input class="form__input" asp-for="UserName" />
+            </div>
+            <div class="form__group">
+                <label class="form__label" asp-for="Password"></label>
+                <input class="form__input" asp-for="Password" />
+            </div>
+            <button class="btn btn-primary btn-block mt-2">Giriş Yap</button>
+        </form>
+    </div>
+</div>
