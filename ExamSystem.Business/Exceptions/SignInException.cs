@@ -5,9 +5,13 @@ using System.Text;
 
 namespace ExamSystem.Business.Exceptions
 {
-    public class SignInException : Exception
+    public class SignInException : ApplicationException
     {
         public SignInException()
+        {
+        }
+
+        public SignInException(IList<string> errors) : base(errors)
         {
         }
 

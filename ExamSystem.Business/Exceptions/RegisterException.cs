@@ -5,9 +5,13 @@ using System.Text;
 
 namespace ExamSystem.Business.Exceptions
 {
-    public class RegisterException : Exception
+    public class RegisterException : ApplicationException
     {
         public RegisterException()
+        {
+        }
+
+        public RegisterException(IList<string> errors) : base(errors)
         {
         }
 

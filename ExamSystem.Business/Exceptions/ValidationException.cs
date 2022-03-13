@@ -5,25 +5,13 @@ using System.Text;
 
 namespace ExamSystem.Business.Exceptions
 {
-    public class ValidationException : Exception
+    public class ValidationException : ApplicationException
     {
-        private IList<string> _errors;
-        public IList<string> Errors
-        {
-            get
-            {
-                return _errors;
-            }
-            private set
-            {
-                _errors = value;
-            }
-        }
-        public ValidationException(IList<string> errors)
-        {
-            _errors = errors;
-        }
         public ValidationException()
+        {
+        }
+
+        public ValidationException(IList<string> errors) : base(errors)
         {
         }
 
