@@ -13,15 +13,23 @@
             <div class="container">
                 <a href="#" class="navbar__logo">Sınav Sistemi</a>
                 <ul class="navbar__list">
-                    <li class="navbar__item">
-                        <a class="navbar__link" href=""><i class="fas fa-user"></i> Giriş Yap</a>
-                    </li>
-                    <li class="navbar__item">
-                        <a class="navbar__link navbar__link--active" href=""><i class="fas fa-user-circle"></i> Profilim</a>
-                    </li>
-                    <li class="navbar__item">
-                        <a class="navbar__link" href=""><i class="fas fa-power-off"></i> Çıkış Yap</a>
-                    </li>
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                                <li class="navbar__item">
+                                    <a asp-controller="Account" asp-action="SignIn" class="navbar__link"><i class="fa-solid fa-user"></i> Giriş Yap</a>
+                                </li>
+                                <li class="navbar__item">
+                                    <a asp-controller="Account" asp-action="Register" class="navbar__link"><i class="fa-solid fa-user-plus"></i> Kayıt Ol</a>
+                                </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                                <li class="navbar__item">
+                                    <a asp-controller="Account" asp-action="SignOut" class="navbar__link"><i class="fa-solid fa-power-off"></i> Çıkış yap</a>
+                                </li>
+                    }
                 </ul>
             </div>
         </nav>
@@ -38,10 +46,10 @@
 
     @if (TempData["SuccessMessage"] != null)
     {
-        <div id="notify" data-time="5000" class="notification notification-success">
-            <button id="notify-close" class="notification__button"><i class="fa-solid fa-xmark"></i></button>
-            <span class="notification__text">@TempData["SuccessMessage"]</span>
-        </div>
+                <div id="notify" data-time="5000" class="notification notification-success">
+                    <button id="notify-close" class="notification__button"><i class="fa-solid fa-xmark"></i></button>
+                    <span class="notification__text">@TempData["SuccessMessage"]</span>
+                </div>
     }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
