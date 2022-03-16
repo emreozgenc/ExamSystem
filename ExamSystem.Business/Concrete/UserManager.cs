@@ -6,6 +6,7 @@ using ExamSystem.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace ExamSystem.Business.Concrete
@@ -16,11 +17,17 @@ namespace ExamSystem.Business.Concrete
         private const int UserNameMinLength = 6;
         private const int PasswordMaxLength = 12;
         private const int PasswordMinLength = 8;
+        private const string MailRegex = @"([\w+\.]+)@(\w+)\.(\w{2,})\.?(\w{2,})?";
+        private const string PhoneRegex = @"\(?0?[ -]?\(?(5\d{2})\)?[ -]?(\d{3})[ -]?(\d{2}[ -]?\d{2})";
+        private Regex mailRegex;
+        private Regex phoneRegex;
         private IUserRepository _userRepository;
 
         public UserManager(IUserRepository userRepository)
         {
             _userRepository = userRepository;
+            mailRegex = new Regex(MailRegex);
+            phoneRegex = new Regex(PhoneRegex);
         }
         public void Create(User user)
         {
@@ -38,6 +45,8 @@ namespace ExamSystem.Business.Concrete
             var validationErrors = new List<string>();
             var userName = user.UserName;
             var password = user.Password;
+            var email = user.Email;
+            var phone = user.Phone;
 
             if (string.IsNullOrEmpty(userName))
             {
@@ -67,6 +76,16 @@ namespace ExamSystem.Business.Concrete
             if (password.Length > PasswordMaxLength || password.Length < PasswordMinLength)
             {
                 validationErrors.Add(Messages.PasswordShortOrLong + $" ({PasswordMinLength} - {PasswordMaxLength})");
+            }
+
+            if (!string.IsNullOrEmpty(email) && !mailRegex.IsMatch(email))
+            {
+                validationErrors.Add(Messages.InvalidEmail);
+            }
+
+            if (!string.IsNullOrEmpty(phone) && !phoneRegex.IsMatch(phone))
+            {
+                validationErrors.Add(Messages.InvalidPhone);
             }
 
             if (validationErrors.Count > 0)
