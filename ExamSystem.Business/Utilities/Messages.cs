@@ -19,6 +19,8 @@ namespace ExamSystem.Business.Utilities
         public const string SignedOutSuccess = "Başarılı bir şekilde çıkış yapıldı.";
         public const string SignedInSuccess = "Başarılı bir şekilde giriş yaptınız.";
         public const string RegisteredSuccess = "Başarılı bir şekilde kaydınız yapıldı. Giriş yapabilirsiniz.";
+        public const string InvalidEmail = "Girmiş olduğunuz e-posta adresi geçerli değildir.";
+        public const string InvalidPhone = "Girmiş olduğunuz telefon numarası geçerli değildir.";
 
 
     }
