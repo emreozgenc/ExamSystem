@@ -12,23 +12,24 @@
         <nav class="navbar">
             <div class="container">
                 <a href="#" class="navbar__logo">Sınav Sistemi</a>
-                <ul class="navbar__list">
+                <span id="collapse-button" data-target="navbar-list" class="navbar__collapse-button"><i class="fa-solid fa-bars"></i></span>
+                <ul id="navbar-list" class="navbar__list">
 
                     @if (!User.Identity.IsAuthenticated)
                     {
-                                <li class="navbar__item">
-                                    <a asp-controller="Account" asp-action="SignIn" class="navbar__link"><i class="fa-solid fa-user"></i> Giriş Yap</a>
-                                </li>
-                                <li class="navbar__item">
-                                    <a asp-controller="Account" asp-action="Register" class="navbar__link"><i class="fa-solid fa-user-plus"></i> Kayıt Ol</a>
-                                </li>
+                        <li class="navbar__item">
+                            <a asp-controller="Account" asp-action="SignIn" class="navbar__link"><i class="fa-solid fa-user"></i> Giriş Yap</a>
+                        </li>
+                        <li class="navbar__item">
+                            <a asp-controller="Account" asp-action="Register" class="navbar__link"><i class="fa-solid fa-user-plus"></i> Kayıt Ol</a>
+                        </li>
                     }
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                                <li class="navbar__item">
-                                    <a asp-controller="Account" asp-action="SignOut" class="navbar__link"><i class="fa-solid fa-power-off"></i> Çıkış yap</a>
-                                </li>
+                        <li class="navbar__item">
+                            <a asp-controller="Account" asp-action="SignOut" class="navbar__link"><i class="fa-solid fa-power-off"></i> Çıkış yap</a>
+                        </li>
                     }
                 </ul>
             </div>
@@ -46,15 +47,16 @@
 
     @if (TempData["SuccessMessage"] != null)
     {
-                <div id="notify" data-time="5000" class="notification notification-success">
-                    <button id="notify-close" class="notification__button"><i class="fa-solid fa-xmark"></i></button>
-                    <span class="notification__text">@TempData["SuccessMessage"]</span>
-                </div>
+        <div id="notify" data-time="5000" class="notification notification-success">
+            <button id="notify-close" class="notification__button"><i class="fa-solid fa-xmark"></i></button>
+            <span class="notification__text">@TempData["SuccessMessage"]</span>
+        </div>
     }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/notify.js"></script>
+    <script src="~/js/navbar.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
