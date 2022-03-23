@@ -39,6 +39,8 @@ namespace ExamSystem.WebMVC
                 options.Cookie.Name = "ExamSystem.Authentication.Cookie";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
                 options.SlidingExpiration = true;
+                options.LoginPath = "/Account/SignIn";
+                options.LogoutPath = "/Account/SignOut";
             });
         }
 
