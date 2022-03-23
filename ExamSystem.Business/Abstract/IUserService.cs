@@ -7,6 +7,6 @@ namespace ExamSystem.Business.Abstract
 {
     public interface IUserService : IService<User>
     {
-
+        void UpdatePassword(User user);
     }
 }

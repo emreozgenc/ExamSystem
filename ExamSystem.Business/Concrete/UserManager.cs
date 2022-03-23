@@ -121,5 +121,16 @@ namespace ExamSystem.Business.Concrete
             ValidateUser(user);
             _userRepository.Update(user);
         }
+
+        public void UpdatePassword(User user)
+        {
+            ValidateUser(user);
+            var password = user.Password;
+            var passwordHash = BCryptNet.HashPassword(password);
+
+            user.PasswordHash = passwordHash;
+
+            _userRepository.Update(user);
+        }
     }
 }
