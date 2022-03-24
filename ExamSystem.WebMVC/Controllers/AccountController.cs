@@ -49,7 +49,7 @@ namespace ExamSystem.WebMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                AddErrorsFromModel(ModelState.Values);
+                WebUtils.AddErrorsFromModel(ModelState);
                 return View(model);
             }
 
@@ -84,7 +84,7 @@ namespace ExamSystem.WebMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                AddErrorsFromModel(ModelState.Values);
+                WebUtils.AddErrorsFromModel(ModelState);
                 return View(model);
             }
 
@@ -123,16 +123,6 @@ namespace ExamSystem.WebMVC.Controllers
             return RedirectToAction("SignIn");
         }
 
-        private void AddErrorsFromModel(ModelStateDictionary.ValueEnumerable values)
-        {
-            foreach (ModelStateEntry modelState in values)
-            {
-                foreach (ModelError error in modelState.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.ErrorMessage.ToString());
-                }
-            }
-        }
         private User GetCorrectUserInstanceByRole(int role)
         {
             var userRole = (UserRole)role;
