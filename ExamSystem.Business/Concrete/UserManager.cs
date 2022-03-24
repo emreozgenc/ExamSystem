@@ -45,6 +45,7 @@ namespace ExamSystem.Business.Concrete
             var validationErrors = new List<string>();
             var userName = user.UserName;
             var password = user.Password;
+            var passwordHash = user.PasswordHash;
             var email = user.Email;
             var phone = user.Phone;
 
@@ -68,14 +69,17 @@ namespace ExamSystem.Business.Concrete
                 }
             }
 
-            if (string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(passwordHash))
             {
-                validationErrors.Add(Messages.NullOrEmptyPassword);
-            }
+                if (string.IsNullOrEmpty(password))
+                {
+                    validationErrors.Add(Messages.NullOrEmptyPassword);
+                }
 
-            if (password.Length > PasswordMaxLength || password.Length < PasswordMinLength)
-            {
-                validationErrors.Add(Messages.PasswordShortOrLong + $" ({PasswordMinLength} - {PasswordMaxLength})");
+                if (password.Length > PasswordMaxLength || password.Length < PasswordMinLength)
+                {
+                    validationErrors.Add(Messages.PasswordShortOrLong + $" ({PasswordMinLength} - {PasswordMaxLength})");
+                }
             }
 
             if (!string.IsNullOrEmpty(email) && !mailRegex.IsMatch(email))
