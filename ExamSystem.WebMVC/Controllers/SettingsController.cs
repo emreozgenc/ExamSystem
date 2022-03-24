@@ -66,5 +66,55 @@ namespace ExamSystem.WebMVC.Controllers
             TempData["SuccessMessage"] = "Şifreniz başarılı bir şekilde değiştirildi.";
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Information()
+        {
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var user = _userService.Get(userId);
+
+            var model = new InformationModel()
+            {
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                EMail = user.Email,
+                Phone = user.Phone,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Information(InformationModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                WebUtils.AddErrorsFromModel(ModelState);
+                return View(model);
+            }
+
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var user = _userService.Get(userId);
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Phone = model.Phone;
+            user.Email = model.EMail;
+
+            try
+            {
+                _userService.Update(user);
+            }
+            catch (ValidationException exception)
+            {
+                ViewBag.ErrorMessages = exception.Errors;
+                return View(model);
+            }
+
+            TempData["SuccessMessage"] = "Bilgileriniz başarılı bir şekilde güncellendi.";
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
