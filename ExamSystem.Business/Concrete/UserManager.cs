@@ -125,12 +125,25 @@ namespace ExamSystem.Business.Concrete
         public void UpdatePassword(User user)
         {
             ValidateUser(user);
+            CheckNewPassword(user);
             var password = user.Password;
             var passwordHash = BCryptNet.HashPassword(password);
 
             user.PasswordHash = passwordHash;
 
             _userRepository.Update(user);
+        }
+
+        private void CheckNewPassword(User user)
+        {
+            var oldPassword = _userRepository.Get(user.UserId).PasswordHash;
+            var result = BCryptNet.Verify(user.Password, oldPassword);
+
+            if (result)
+            {
+                throw new PasswordException(Messages.NewPasswordCanNotBeEqualToOld);
+            }
+
         }
     }
 }
