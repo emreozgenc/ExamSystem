@@ -9,6 +9,7 @@ namespace ExamSystem.Entities.Concrete
     {
         public int ExamId { get; set; }
         public string LessonName { get; set; }
+        public int AnswerCount { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime FinishTime { get; set; }
         public ICollection<Question> Questions { get; set; }
