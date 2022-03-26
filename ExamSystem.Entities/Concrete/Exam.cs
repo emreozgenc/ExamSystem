@@ -1,6 +1,7 @@
 ﻿using ExamSystem.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ExamSystem.Entities.Concrete
@@ -14,6 +15,8 @@ namespace ExamSystem.Entities.Concrete
         public DateTime FinishTime { get; set; }
         public ICollection<Question> Questions { get; set; }
         public Teacher Teacher { get; set; }
+        [ForeignKey(nameof(Teacher))]
+        public int TeacherId { get; set; }
         public ICollection<StudentExam> StudentExams { get; set; }
     }
 }
