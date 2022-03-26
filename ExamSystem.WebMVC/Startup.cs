@@ -33,6 +33,8 @@ namespace ExamSystem.WebMVC
             services.AddScoped<ISignInService, SignInManager>();
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IUserRepository, EfCoreUserRepository>();
+            services.AddScoped<IExamService, ExamManager>();
+            services.AddScoped<IExamRepository, EfCoreExamRepository>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
