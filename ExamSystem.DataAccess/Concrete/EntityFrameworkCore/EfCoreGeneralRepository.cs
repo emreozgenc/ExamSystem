@@ -8,9 +8,9 @@ using System.Text;
 
 namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
 {
-    public class EfCoreGeneralRepository<TEntity, TContext> : IRepository<TEntity> where TEntity : class, IEntity where TContext : DbContext, new()
+    public abstract class EfCoreGeneralRepository<TEntity, TContext> : IRepository<TEntity> where TEntity : class, IEntity where TContext : DbContext, new()
     {
-        public void Create(TEntity entity)
+        public virtual void Create(TEntity entity)
         {
             using(var context = new TContext())
             {
@@ -19,7 +19,7 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
             }
         }
 
-        public void Delete(int entityId)
+        public virtual void Delete(int entityId)
         {
             using(var context = new TContext())
             {
@@ -28,7 +28,7 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
             }
         }
 
-        public TEntity Get(int entityId)
+        public virtual TEntity Get(int entityId)
         {
             using(var context = new TContext())
             {
@@ -37,7 +37,7 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
             }
         }
 
-        public List<TEntity> GetAll()
+        public virtual List<TEntity> GetAll()
         {
             using(var context = new TContext())
             {
@@ -46,7 +46,7 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
             }
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             using(var context = new TContext())
             {
