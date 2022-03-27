@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,6 +36,9 @@ namespace ExamSystem.WebMVC
             services.AddScoped<IUserRepository, EfCoreUserRepository>();
             services.AddScoped<IExamService, ExamManager>();
             services.AddScoped<IExamRepository, EfCoreExamRepository>();
+            services.AddScoped<IQuestionRepository, EfCoreQuestionRepository>();
+            services.AddScoped<IQuestionService, QuestionManager>();
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
@@ -44,6 +48,8 @@ namespace ExamSystem.WebMVC
                 options.LoginPath = "/Account/SignIn";
                 options.LogoutPath = "/Account/SignOut";
             });
+
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
