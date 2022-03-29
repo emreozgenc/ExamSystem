@@ -82,11 +82,14 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
 
         public bool TeacherHasExam(int examId, int teacherUserId)
         {
-            using(var context = new ExamSystemContext())
+            using (var context = new ExamSystemContext())
             {
-                var exam = context.Exams.FirstOrDefault(x => x.ExamId == examId);
+                var examTeacherId = context.Exams
+                                        .Where(x => x.ExamId == examId)
+                                        .Select(x => x.TeacherId)
+                                        .FirstOrDefault();
 
-                var result = teacherUserId == exam.TeacherId;
+                var result = teacherUserId == examTeacherId;
 
                 return result;
             }
