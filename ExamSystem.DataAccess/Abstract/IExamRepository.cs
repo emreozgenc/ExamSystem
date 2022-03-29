@@ -10,5 +10,7 @@ namespace ExamSystem.DataAccess.Abstract
         Exam GetWithTeacher(int id);
         Exam GetWithQuestions(int id);
         Exam GetWithQuestionsandTeacher(int id);
+        Exam GetWithQuestionsandStudents(int id);
+        Exam GetWithAllDetails(int id);
     }
 }

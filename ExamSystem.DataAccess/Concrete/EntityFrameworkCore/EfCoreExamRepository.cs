@@ -10,6 +10,22 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
 {
     public class EfCoreExamRepository : EfCoreGeneralRepository<Exam, ExamSystemContext>, IExamRepository
     {
+        public Exam GetWithAllDetails(int id)
+        {
+            using (var context = new ExamSystemContext())
+            {
+                var exam = context.Exams
+                            .Include(x => x.StudentExams)
+                            .ThenInclude(x => x.Student)
+                            .Include(x => x.Teacher)
+                            .Include(x => x.Questions)
+                            .ThenInclude(x => x.Answers)
+                            .FirstOrDefault(x => x.ExamId == id);
+
+                return exam;
+            }
+        }
+
         public Exam GetWithQuestions(int id)
         {
             using (var context = new ExamSystemContext())
@@ -17,6 +33,21 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
                 var exam = context.Exams
                             .Include(x => x.Questions)
                             .ThenInclude(x => x.Answers)
+                            .FirstOrDefault(x => x.ExamId == id);
+
+                return exam;
+            }
+        }
+
+        public Exam GetWithQuestionsandStudents(int id)
+        {
+            using (var context = new ExamSystemContext())
+            {
+                var exam = context.Exams
+                            .Include(x => x.Questions)
+                            .ThenInclude(x => x.Answers)
+                            .Include(x => x.StudentExams)
+                            .ThenInclude(x => x.Student)
                             .FirstOrDefault(x => x.ExamId == id);
 
                 return exam;
