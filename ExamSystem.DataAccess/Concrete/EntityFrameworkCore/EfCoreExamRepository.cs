@@ -79,5 +79,17 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
                 return exam;
             }
         }
+
+        public bool TeacherHasExam(int examId, int teacherUserId)
+        {
+            using(var context = new ExamSystemContext())
+            {
+                var exam = context.Exams.FirstOrDefault(x => x.ExamId == examId);
+
+                var result = teacherUserId == exam.TeacherId;
+
+                return result;
+            }
+        }
     }
 }
