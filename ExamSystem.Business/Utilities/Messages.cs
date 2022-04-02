@@ -22,6 +22,7 @@ namespace ExamSystem.Business.Utilities
         public const string InvalidEmail = "Girmiş olduğunuz e-posta adresi geçerli değildir.";
         public const string InvalidPhone = "Girmiş olduğunuz telefon numarası geçerli değildir.";
         public const string NewPasswordCanNotBeEqualToOld = "Yeni şifre eski şifreniz ile aynı olamaz.";
+        public const string StudentDoesNotHaveTheExam = "Bu sınavın öğrenci listesinde kayıtlı değilsiniz.";
 
 
     }
