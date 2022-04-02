@@ -13,5 +13,6 @@ namespace ExamSystem.DataAccess.Abstract
         Exam GetWithQuestionsandStudents(int id);
         Exam GetWithAllDetails(int id);
         bool TeacherHasExam(int examId, int teacherUserId);
+        bool StudentHasExam(int examId, int studentUserId);
     }
 }

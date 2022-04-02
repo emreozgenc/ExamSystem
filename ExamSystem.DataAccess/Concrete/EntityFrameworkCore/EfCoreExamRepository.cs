@@ -80,6 +80,17 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
             }
         }
 
+        public bool StudentHasExam(int examId, int studentUserId)
+        {
+            using (var context = new ExamSystemContext())
+            {
+                var result = context.StudentExams
+                                    .Any(x => x.StudentId == studentUserId && x.ExamId == examId);
+
+                return result;
+            }
+        }
+
         public bool TeacherHasExam(int examId, int teacherUserId)
         {
             using (var context = new ExamSystemContext())
