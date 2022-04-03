@@ -1,0 +1,100 @@
+﻿@model ExamDetailModel
+
+@{
+    var exam = Model.Exam;
+    var teacher = Model.Exam.Teacher;
+}
+
+<h2 class="text-center text-disabled-t mt-5"><i class="fa-solid fa-circle-info text-primary"></i> Sınav Bilgileri</h2>
+<div class="card col-12 col-md-10 col-xl-8 mx-auto mt-2">
+    <div class="row row-align-flex-start">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-6">
+                    <span class="text-bold text-primary">Ders Adı : </span>
+                </div>
+                <div class="col-6">
+                    <span>@exam.LessonName</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <span class="text-bold text-primary">Başlama tarihi : </span>
+                </div>
+                <div class="col-6">
+                    <span>@exam.StartTime</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <span class="text-bold text-primary">Bitiş tarihi : </span>
+                </div>
+                <div class="col-6">
+                    <span>@exam.FinishTime</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <span class="text-bold text-primary">Sınav Süresi : </span>
+                </div>
+                <div class="col-6">
+                    <span>@(exam.FinishTime.Subtract(exam.StartTime).TotalMinutes) dakika</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <span class="text-bold text-primary">Seçenek sayısı : </span>
+                </div>
+                <div class="col-6">
+                    <span>@exam.AnswerCount</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 ml-auto">
+            <a href="#" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-plus"></i> Soru Ekle</a>
+            <a href="#" class="btn btn-warning btn-sm btn-block mt-1"><i class="fa-solid fa-plus"></i> Öğrenci Ekle</a>
+            <a href="#" class="btn btn-danger btn-sm btn-block mt-1"><i class="fa-solid fa-eraser"></i> Sınavı Sil</a>
+        </div>
+    </div>
+</div>
+<h2 class="text-center text-disabled-t mt-2"><i class="fa-solid fa-graduation-cap text-primary"></i> Katılan Öğrenciler</h2>
+<div class="card col-12 col-md-10 col-xl-8 mx-auto mt-2">
+    <div class="table-container">
+        <table class="table table-striped table-no-border">
+            <thead class="text-left">
+                <tr>
+                    <th>#</th>
+                    <th>Kullanıcı adı</th>
+                    <th>Ad Soyad</th>
+                    <th class="text-center">-</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1234</td>
+                    <td>emreozgenc</td>
+                    <td>Emre Özgenç</td>
+                    <td class="text-center"><a class="btn btn-sm btn-danger" href=""><i class="fa-solid fa-eraser"></i> Kaldır</a></td>
+                </tr>
+                <tr>
+                    <td>4321</td>
+                    <td>eminozgenc</td>
+                    <td>Emin Özgenç</td>
+                    <td class="text-center"><a class="btn btn-sm btn-danger" href=""><i class="fa-solid fa-eraser"></i> Kaldır</a></td>
+                </tr>
+                <tr>
+                    <td>7894</td>
+                    <td>johndoe</td>
+                    <td>John Doe</td>
+                    <td class="text-center"><a class="btn btn-sm btn-danger" href=""><i class="fa-solid fa-eraser"></i> Kaldır</a></td>
+                </tr>
+                <tr>
+                    <td>4567</td>
+                    <td>janedoe</td>
+                    <td>Jane Doe</td>
+                    <td class="text-center"><a class="btn btn-sm btn-danger" href=""><i class="fa-solid fa-eraser"></i> Kaldır</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
