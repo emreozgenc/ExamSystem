@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExamSystem.Business.Exceptions
 {
-    internal class UnauthorizedException : ApplicationException
+    public class UnauthorizedException : ApplicationException
     {
         public UnauthorizedException()
         {
