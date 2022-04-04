@@ -27,6 +27,12 @@ namespace ExamSystem.WebMVC.Areas.Teacher.Controllers
         }
 
         [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -54,7 +60,7 @@ namespace ExamSystem.WebMVC.Areas.Teacher.Controllers
 
             _examService.Create(exam);
 
-            TempData["SuccessMessage"] = $"{exam.LessonName} sınavı başarılı bir şekilde oluşturuldu.";
+            TempData["SuccessMessage"] = $"\"{exam.LessonName}\" sınavı başarılı bir şekilde oluşturuldu.";
             return RedirectToAction("Index");
         }
 
