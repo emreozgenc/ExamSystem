@@ -61,7 +61,7 @@ namespace ExamSystem.WebMVC.Areas.Teacher.Controllers
             _examService.Create(exam);
 
             TempData["SuccessMessage"] = $"\"{exam.LessonName}\" sınavı başarılı bir şekilde oluşturuldu.";
-            return RedirectToAction("Index");
+            return RedirectToAction("Detail", new {id = exam.ExamId});
         }
 
         [HttpGet]
