@@ -10,6 +10,33 @@ namespace ExamSystem.DataAccess.Concrete.EntityFrameworkCore
 {
     public class EfCoreExamRepository : EfCoreGeneralRepository<Exam, ExamSystemContext>, IExamRepository
     {
+        public override void Delete(int examId)
+        {
+            using (var context = new ExamSystemContext())
+            {
+                var studentExams = context.StudentExams
+                                    .Where(x => x.ExamId == examId)
+                                    .ToList();
+                context.StudentExams.RemoveRange(studentExams);
+
+                var questions = context.Questions
+                                    .Where(x => x.ExamId == examId)
+                                    .ToList();
+                foreach (var question in questions)
+                {
+                    var answers = context.Answers
+                                    .Where(x => x.QuestionId == question.QuestionId)
+                                    .ToList();
+                    context.RemoveRange(answers);
+                }
+
+                context.Questions.RemoveRange(questions);
+
+                var exam = context.Exams.FirstOrDefault(x => x.ExamId == examId);
+                context.Exams.Remove(exam);
+                context.SaveChanges();
+            }
+        }
         public Exam GetWithAllDetails(int id)
         {
             using (var context = new ExamSystemContext())
