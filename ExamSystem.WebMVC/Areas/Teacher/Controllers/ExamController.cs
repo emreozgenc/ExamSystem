@@ -47,7 +47,7 @@ namespace ExamSystem.WebMVC.Areas.Teacher.Controllers
                 return View(model);
             }
 
-            var teacherUserId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var teacherUserId = WebUtils.GetUserIdFromClaims(User);
 
             var exam = new Exam()
             {
@@ -61,13 +61,13 @@ namespace ExamSystem.WebMVC.Areas.Teacher.Controllers
             _examService.Create(exam);
 
             TempData["SuccessMessage"] = $"\"{exam.LessonName}\" sınavı başarılı bir şekilde oluşturuldu.";
-            return RedirectToAction("Detail", new {id = exam.ExamId});
+            return RedirectToAction("Detail", new { id = exam.ExamId });
         }
 
         [HttpGet]
         public IActionResult Detail(int id = 1)
         {
-            var teacherUserId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var teacherUserId = WebUtils.GetUserIdFromClaims(User);
             Exam exam = null;
             try
             {
