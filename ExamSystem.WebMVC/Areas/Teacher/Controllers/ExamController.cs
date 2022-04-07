@@ -83,5 +83,22 @@ namespace ExamSystem.WebMVC.Areas.Teacher.Controllers
             var model = new ExamDetailModel() { Exam = exam };
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult Delete([FromForm] int examId)
+        {
+            int teacherUserId = WebUtils.GetUserIdFromClaims(User);
+
+            try
+            {
+                _examService.Delete(examId, teacherUserId);
+            }
+            catch (UnauthorizedException exception)
+            {
+                // To do exception handling
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
