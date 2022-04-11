@@ -13,6 +13,8 @@ namespace ExamSystem.Business.Abstract
         void Delete(int examId, int teacherUserId);
         void Update(Exam exam, int teacherUserId);
         void Create(Exam exam);
+        bool TeacherHasExam(int examId, int teacherUserId);
+        bool StudentHasExam(int examId, int studentUserId);
 
     }
 }

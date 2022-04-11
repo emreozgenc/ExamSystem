@@ -31,7 +31,7 @@ namespace ExamSystem.Business.Concrete
         {
             var result = _examRepository.TeacherHasExam(examId, teacherUserId);
 
-            if(!result)
+            if (!result)
             {
                 throw new UnauthorizedException(Messages.TeacherDoesNotHaveTheExam);
             }
@@ -82,6 +82,18 @@ namespace ExamSystem.Business.Concrete
         public void Create(Exam exam)
         {
             _examRepository.Create(exam);
+        }
+
+        public bool TeacherHasExam(int examId, int teacherUserId)
+        {
+            var result = _examRepository.TeacherHasExam(examId, teacherUserId);
+            return result;
+        }
+
+        public bool StudentHasExam(int examId, int studentUserId)
+        {
+            var result = _examRepository.StudentHasExam(examId, studentUserId);
+            return result;
         }
     }
 }
