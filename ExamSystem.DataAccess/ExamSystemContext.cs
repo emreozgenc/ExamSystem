@@ -39,10 +39,6 @@ namespace ExamSystem.DataAccess
                 .WithMany(x => x.StudentExams)
                 .HasForeignKey(x => x.ExamId);
 
-            builder.Entity<Question>()
-                .HasOne(x => x.CorrectAnswer)
-                .WithOne(x => x.Question);
-
             builder.Entity<User>()
                 .HasIndex(x => x.UserName)
                 .IsUnique();
