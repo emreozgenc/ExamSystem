@@ -14,5 +14,6 @@ namespace ExamSystem.Entities.Concrete
 
         [ForeignKey(nameof(Question))]
         public int QuestionId { get; set; }
+        public bool IsCorrectAnswer { get; set; }
     }
 }
